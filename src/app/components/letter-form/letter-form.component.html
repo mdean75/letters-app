@@ -7,6 +7,14 @@
   </mat-card-title>
   <mat-card-content>
     <div>
+      <label>To: </label>
+      <input [(ngModel)]="to">
+    </div>
+    <div>
+      <label>From: </label>
+      <input [(ngModel)]="from">
+    </div>
+    <div>
       <textarea matInput rows="30" cols="50" [(ngModel)]="message"></textarea>
     </div>
     <div>

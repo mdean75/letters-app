@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class LetterFormComponent implements OnInit {
   isSending = false;
   message = '';
+  to = '';
+  from = '';
 
   constructor() { }
 
@@ -19,6 +21,8 @@ export class LetterFormComponent implements OnInit {
     await delay(3000);
     this.isSending = false;
     this.message = '';
+    this.to = '';
+    this.from = '';
   }
 }
 
