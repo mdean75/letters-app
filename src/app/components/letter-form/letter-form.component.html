@@ -1,0 +1,18 @@
+<mat-card>
+  <div *ngIf="isSending">
+    <mat-spinner></mat-spinner>
+  </div>
+  <mat-card-title>
+    Send a Letter
+  </mat-card-title>
+  <mat-card-content>
+    <div>
+      <textarea matInput rows="30" cols="50" [(ngModel)]="message"></textarea>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" (click)="sendMessage()">Send Message</button>
+    </div>
+
+  </mat-card-content>
+
+</mat-card>

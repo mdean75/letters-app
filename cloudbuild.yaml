@@ -1,0 +1,12 @@
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/silken-gadget-247900/seating-ui', '.']
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/silken-gadget-247900/seating-ui']
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'seating-ui', '--image', 'gcr.io/silken-gadget-247900/seating-ui', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
+images:
+  - gcr.io/silken-gadget-247900/seating-ui
