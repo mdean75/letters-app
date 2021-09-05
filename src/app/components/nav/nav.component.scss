@@ -1,0 +1,30 @@
+$nav-background: #544c4A;
+$nav-color: white;
+
+.sidenav-container {
+  //height: 100%;
+}
+
+.mat-sidenav {
+  background-color: $nav-background;
+}
+
+.sidenav {
+  width: 200px;
+  color: $nav-color;
+}
+
+.sidenav .mat-toolbar {
+  background: $nav-background;
+  color: $nav-color;
+}
+
+.sidenav .mat-nav-list a {
+  color: $nav-color;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
