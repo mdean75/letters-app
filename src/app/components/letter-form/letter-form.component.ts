@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs';
+import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
+
+
 
 @Component({
   selector: 'app-letter-form',
@@ -11,7 +15,11 @@ export class LetterFormComponent implements OnInit {
   to = '';
   from = '';
 
-  constructor() { }
+  items: Observable<any[]>;
+
+  constructor(private afs: AngularFirestore) {
+    this.items = afs.collection('letters').valueChanges();
+  }
 
   ngOnInit(): void {
   }
@@ -24,8 +32,22 @@ export class LetterFormComponent implements OnInit {
     this.to = '';
     this.from = '';
   }
+
+  saveMessage() {
+    const letterCollection = this.afs.collection<Letter>('letters');
+    letterCollection.add({to: this.to, from: this.from, message: this.message, createdTs: Date.now()});
+  }
 }
 
 function delay(ms: number) {
   return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+export interface Letter {
+  to: string;
+  from: string;
+  message: string;
+  user?: string;
+  createdTs: any;
+  id?: string;
 }
