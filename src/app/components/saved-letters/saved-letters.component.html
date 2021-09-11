@@ -1,0 +1,8 @@
+<div *ngFor="let letter of items | async">
+  To: {{letter.to}}
+  From: {{letter.from}}
+  Message: {{letter.message}}
+  User: {{letter.user}}
+  CreatedTs: {{letter.createdTs | date:'medium'}}
+  ID: {{letter.id}}
+</div>

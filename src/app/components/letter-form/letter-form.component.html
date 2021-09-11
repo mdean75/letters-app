@@ -34,10 +34,11 @@
     </div>
     <div>
       <button mat-raised-button color="primary" (click)="sendMessage()">Send Message</button>
+      <button [disabled]="!isAuthenticated" style="margin-left: 175px" mat-raised-button color="accent" (click)="saveMessage()">Save Message</button>
     </div>
-    <div>
-      <button mat-raised-button color="primary" (click)="saveMessage()">Save Message</button>
-    </div>
+<!--    <div>-->
+<!--      <button mat-raised-button color="accent" (click)="saveMessage()">Save Message</button>-->
+<!--    </div>-->
 
   </mat-card-content>
 

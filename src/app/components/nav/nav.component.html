@@ -7,6 +7,7 @@
     <mat-nav-list>
       <a mat-list-item routerLink="/fd">Home</a>
       <a mat-list-item routerLink="/aboutme">About Me</a>
+      <a mat-list-item routerLink="/savedletters">Saved Letters</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -20,9 +21,15 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Letters 2 Lost Loved Ones</span>
+      <span style="margin-left: auto;">
+        <button *ngIf="!isAuthenticated" routerLink="/login"> Login </button>
+        <span style="margin-right: 20px" *ngIf="isAuthenticated">{{ this.username }}</span>
+        <button *ngIf="isAuthenticated" (click)="logout()"> Logout </button>
+      </span>
+
 <!--      <span style="margin-left: auto">Log In</span>-->
     </mat-toolbar>
     <!-- Add Content Here -->
-    <router-outlet></router-outlet>
+    <router-outlet (activate)="onOutletLoaded($event)"></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {Injector, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,13 +20,31 @@ import { AboutMeComponent } from './components/about-me/about-me.component';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { SavedLettersComponent } from './components/saved-letters/saved-letters.component';
+import { LoginComponent } from './components/login/login.component';
+import {OKTA_CONFIG, OktaAuthGuard, OktaAuthModule, OktaCallbackComponent} from '@okta/okta-angular';
+import oktaAuthConfig from './app.config';
+import { Router } from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+
+const oktaConfig = Object.assign({
+  onAuthRequired: (oktaAuth, injector) => {
+    const router = injector.get(Router);
+    // Redirect the user to your custom login page
+    router.navigate(['/login']);
+  }
+}, oktaAuthConfig.oidc);
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LetterFormComponent,
     NavComponent,
-    AboutMeComponent
+    AboutMeComponent,
+    SavedLettersComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +61,12 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
     MatIconModule,
     MatListModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: OKTA_CONFIG, useValue: oktaConfig}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
