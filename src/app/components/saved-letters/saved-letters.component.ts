@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
-import {Letter} from '../letter-form/letter-form.component';
 import {map} from 'rxjs/operators';
 import {OktaAuthService} from '@okta/okta-angular';
+import {Letter, LetterService} from '../../services/letter/letter.service';
 
 @Component({
   selector: 'app-saved-letters',
@@ -14,7 +14,7 @@ export class SavedLettersComponent implements OnInit {
 
   items: Observable<Letter[]>;
 
-  constructor(private afs: AngularFirestore, private oktaAuth: OktaAuthService) {
+  constructor(private afs: AngularFirestore, private oktaAuth: OktaAuthService, private letterService: LetterService) {
     this.loadLetters();
   }
 
@@ -25,12 +25,7 @@ export class SavedLettersComponent implements OnInit {
     });
 
     console.log(`email in saved letters: ${email}`);
-    this.items = this.afs.collection<Letter>('letters', ref => ref.where('user', '==', email)).snapshotChanges()
-      .pipe(map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Letter;
-        const id = a.payload.doc.id;
-        return {id, ...data};
-      })));
+    this.items = this.letterService.getUsersLetters(email);
     console.log(this.items);
   }
 

@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {OktaAuthService} from '@okta/okta-angular';
 import {UserService} from '../../services/user/user.service';
+import {Letter, LetterService} from '../../services/letter/letter.service';
 
 @Component({
   selector: 'app-letter-form',
@@ -22,14 +23,16 @@ export class LetterFormComponent implements OnInit {
 
   items: Observable<any[]>;
 
-  constructor(private afs: AngularFirestore, private oktaAuth: OktaAuthService, private userservice: UserService) {
+  constructor(private afs: AngularFirestore, private oktaAuth: OktaAuthService, private userservice: UserService,
+              private letterService: LetterService) {
     this.items = afs.collection('letters').valueChanges();
 
     // listen for changes to the user's logged in status
     this.userservice.loggedIn.subscribe(status => this.isAuthenticated = status);
+    console.log(this.oktaAuth.getUser().then(data => {console.log(data.time_zone); }));
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     console.log(`email: ${this.email}`);
   }
 
@@ -43,9 +46,13 @@ export class LetterFormComponent implements OnInit {
   }
 
   async saveMessage() {
-    const letterCollection = this.afs.collection<Letter>('letters');
     const user = await this.oktaAuth.getUser();
-    await letterCollection.add({to: this.to, from: this.from, message: this.message, createdTs: Date.now(), user: user.email});
+    const letter: Letter = {to: this.to, from: this.from, message: this.message, createdTs: new Date().toISOString(), user: user.email};
+    this.letterService.saveLetter(letter).subscribe(res => {
+      console.log(res.id);
+    }, error => {
+      console.error(error);
+    });
   }
 }
 
@@ -53,11 +60,3 @@ function delay(ms: number) {
   return new Promise( resolve => setTimeout(resolve, ms) );
 }
 
-export interface Letter {
-  to: string;
-  from: string;
-  message: string;
-  user?: string;
-  createdTs: any;
-  id?: string;
-}
