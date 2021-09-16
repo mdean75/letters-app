@@ -6,7 +6,7 @@ export const environment = {
       clientId: `0oa1o7lwagrUdSmCg5d7`,
       issuer: `https://dev-07780239.okta.com/oauth2/default`,
       redirectUri: 'https://letters2lostlovedones.com/login/callback',
-      scopes: ['openid', 'profile', 'email', 'timeZone'],
+      scopes: ['openid', 'profile', 'email'],
       testing: {
         disableHttpsCheck: `true`
       },

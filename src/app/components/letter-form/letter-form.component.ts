@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {OktaAuthService} from '@okta/okta-angular';
 import {UserService} from '../../services/user/user.service';
 import {Letter, LetterService} from '../../services/letter/letter.service';
@@ -23,9 +22,8 @@ export class LetterFormComponent implements OnInit {
 
   items: Observable<any[]>;
 
-  constructor(private afs: AngularFirestore, private oktaAuth: OktaAuthService, private userservice: UserService,
+  constructor(private oktaAuth: OktaAuthService, private userservice: UserService,
               private letterService: LetterService) {
-    this.items = afs.collection('letters').valueChanges();
 
     // listen for changes to the user's logged in status
     this.userservice.loggedIn.subscribe(status => this.isAuthenticated = status);

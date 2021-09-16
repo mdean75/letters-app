@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 import {OktaAuthService} from '@okta/okta-angular';
 import {Letter, LetterService} from '../../services/letter/letter.service';
 
@@ -14,7 +12,7 @@ export class SavedLettersComponent implements OnInit {
 
   items: Observable<Letter[]>;
 
-  constructor(private afs: AngularFirestore, private oktaAuth: OktaAuthService, private letterService: LetterService) {
+  constructor(private oktaAuth: OktaAuthService, private letterService: LetterService) {
     this.loadLetters();
   }
 

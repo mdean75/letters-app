@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import {OktaAuthService} from '@okta/okta-angular';
 import {Router} from '@angular/router';
@@ -15,8 +14,7 @@ export class AppComponent implements OnInit {
   isAuthenticated = false;
   username: string;
 
-  constructor(public oktaAuth: OktaAuthService, public router: Router, firestore: AngularFirestore) {
-    this.items = firestore.collection('letters').valueChanges();
+  constructor(public oktaAuth: OktaAuthService, public router: Router) {
     this.oktaAuth.$authenticationState.subscribe(
       async (isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
