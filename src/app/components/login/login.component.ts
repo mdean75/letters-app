@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       logo: '/favicon.ico',
       i18n: {
         en: {
-          'primaryauth.title': 'Sign in to Angular & Company',
+          'primaryauth.title': 'Sign in to Letters 2 Lost Loved Ones',
         },
       },
       authParams: {
