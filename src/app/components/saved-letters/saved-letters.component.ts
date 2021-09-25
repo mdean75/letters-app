@@ -11,6 +11,7 @@ import {Letter, LetterService} from '../../services/letter/letter.service';
 export class SavedLettersComponent implements OnInit {
 
   items: Observable<Letter[]>;
+  letters: Observable<Letter[]>;
 
   constructor(private oktaAuth: OktaAuthService, private letterService: LetterService) {
     this.loadLetters();
@@ -25,6 +26,7 @@ export class SavedLettersComponent implements OnInit {
     console.log(`email in saved letters: ${email}`);
     this.items = this.letterService.getUsersLetters(email);
     console.log(this.items);
+    this.letters = this.letterService.getMetaForUser(email);
   }
 
   async getUser() {

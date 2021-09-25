@@ -1,8 +1,10 @@
-<div *ngFor="let letter of items | async">
+<div *ngFor="let letter of letters | async">
+  <button style="margin: 20px;" mat-raised-button color="accent" [routerLink]="['/letters', letter.id]">Open </button>
   To: {{letter.to}}
   From: {{letter.from}}
-  Message: {{letter.message}}
-  User: {{letter.user}}
+  Title: {{letter.title}}
+  <!-- User: {{letter.user}} -->
   CreatedTs: {{letter.createdTs | date:'medium'}}
-  ID: {{letter.id}}
+  <!-- ID: {{letter.id}} -->
+
 </div>

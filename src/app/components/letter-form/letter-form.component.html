@@ -1,5 +1,5 @@
 <mat-card>
-  <div *ngIf="isSending">
+  <div *ngIf="this.isSending">
     <mat-spinner></mat-spinner>
   </div>
   <mat-card-title>
@@ -30,14 +30,27 @@
       <input [(ngModel)]="from">
     </div>
     <div>
-      <textarea matInput rows="30" cols="50" [(ngModel)]="message"></textarea>
+      <label>Title: </label>
+      <input [(ngModel)]="title">
+    </div>
+    <div *ngIf=this.isSaving>
+      <mat-progress-bar mode="indeterminate">dsfds</mat-progress-bar>
+    </div>
+    <div>
+
+      <!-- <textarea matInput rows="30" cols="50" [(ngModel)]="message"></textarea> -->
+
+
+      <div id="summernote" [ngxSummernote]="config" [ngxSummernoteView]="summernote"></div>
     </div>
     <div>
       <button mat-raised-button color="primary" (click)="sendMessage()">Send Message</button>
-      <button [disabled]="!isAuthenticated" style="margin-left: 175px" mat-raised-button color="accent" (click)="saveMessage()">Save Message</button>
+      <button [disabled]="!isAuthenticated" style="margin-left: 175px" mat-raised-button color="accent" (click)="saveLetter()">Save Message</button>
     </div>
+    <!-- <div id="summernote" [ngxSummernote]="config" [ngxSummernoteView]="summernote"></div> -->
+    <!-- <button mat-raised-button color="default" (click)="testeditable()">Test</button> -->
 <!--    <div>-->
-<!--      <button mat-raised-button color="accent" (click)="saveMessage()">Save Message</button>-->
+     <!-- <button mat-raised-button color="accent" (click)="saveMessage()">Save Message</button> -->
 <!--    </div>-->
 
   </mat-card-content>

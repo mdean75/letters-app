@@ -9,10 +9,12 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
   title = 'letters-app';
   items: Observable<any[]>;
   isAuthenticated = false;
   username: string;
+  $: any;
 
   constructor(public oktaAuth: OktaAuthService, public router: Router) {
     this.oktaAuth.$authenticationState.subscribe(

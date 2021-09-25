@@ -9,6 +9,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {FormsModule} from '@angular/forms';
 import { NavComponent } from './components/nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -23,6 +24,9 @@ import {OKTA_CONFIG, OktaAuthGuard, OktaAuthModule, OktaCallbackComponent} from 
 import oktaAuthConfig from './app.config';
 import { Router } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
+import { NgxSummernoteModule } from 'ngx-summernote';
+
+import * as $ from 'jquery';
 
 const oktaConfig = Object.assign({
   onAuthRequired: (oktaAuth, injector) => {
@@ -57,7 +61,9 @@ const oktaConfig = Object.assign({
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSummernoteModule,
+    MatProgressBarModule
   ],
   providers: [
     {provide: OKTA_CONFIG, useValue: oktaConfig}

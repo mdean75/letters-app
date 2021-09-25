@@ -17,6 +17,7 @@ export function onAuthRequired(oktaAuth: OktaAuthService, injector: Injector) {
 const routes: Routes = [
   {path: '', component: LetterFormComponent},
   {path: 'letters', component: LetterFormComponent},
+  {path: 'letters/:id', component: LetterFormComponent},
   {path: 'aboutme', component: AboutMeComponent},
   {path: 'savedletters', component: SavedLettersComponent, canActivate: [OktaAuthGuard]},
   {path: 'login/callback', component: OktaCallbackComponent},
