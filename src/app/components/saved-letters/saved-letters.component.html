@@ -1,10 +1,19 @@
-<div *ngFor="let letter of letters | async">
-  <button style="margin: 20px;" mat-raised-button color="accent" [routerLink]="['/letters', letter.id]">Open </button>
-  To: {{letter.to}}
-  From: {{letter.from}}
-  Title: {{letter.title}}
-  <!-- User: {{letter.user}} -->
-  CreatedTs: {{letter.createdTs | date:'medium'}}
-  <!-- ID: {{letter.id}} -->
-
+<div class="container">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div class="sub-container" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let letter of letters | async">
+        <mat-card class="mat-elevation-z4">
+          <mat-card-title>
+            <mat-icon matTooltip="Open letter" matTooltipPosition="after" aria-hidden="false" aria-label="Open letter icon" [routerLink]="['/letters', letter.id]">open_in_new</mat-icon>
+            <!-- <mat-icon class="delete-icon" aria-hidden="false" aria-label="Delete letter icon">delete</mat-icon> -->
+          </mat-card-title>
+          <mat-divider></mat-divider>
+          <mat-card-content>
+            <p>To: {{letter.to}}</p>
+            <p>From: {{letter.from}}</p>
+            <p>Title: {{letter.title}}</p>
+            <p>CreatedTs: {{letter.createdTs | date:'medium'}}</p>
+          </mat-card-content>
+        </mat-card>
+    </div>
+  </div>
 </div>

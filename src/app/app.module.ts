@@ -25,8 +25,10 @@ import oktaAuthConfig from './app.config';
 import { Router } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import { NgxSummernoteModule } from 'ngx-summernote';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import * as $ from 'jquery';
+import { FlexLayoutModule, FlexModule, GridModule } from '@angular/flex-layout';
 
 const oktaConfig = Object.assign({
   onAuthRequired: (oktaAuth, injector) => {
@@ -63,7 +65,11 @@ const oktaConfig = Object.assign({
     MatListModule,
     HttpClientModule,
     NgxSummernoteModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    FlexModule,
+    FlexLayoutModule,
+    GridModule,
+    MatTooltipModule
   ],
   providers: [
     {provide: OKTA_CONFIG, useValue: oktaConfig}

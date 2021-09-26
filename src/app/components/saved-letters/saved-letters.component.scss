@@ -1,0 +1,26 @@
+mat-card {
+    background-color: lightgray;
+}
+
+mat-card-title {
+    display: flex;
+}
+
+mat-card-content {
+    margin-top: 20px;
+}
+
+.container {
+    height: 89vh !important; 
+    overflow-x: hidden !important;
+}
+
+.sub-container {
+    margin: 20px; 
+    min-height: 0;
+}
+
+.delete-icon {
+    justify-content: flex-end; 
+    margin-left:auto
+}
