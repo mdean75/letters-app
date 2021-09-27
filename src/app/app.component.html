@@ -9,4 +9,15 @@
 <!--<button *ngIf="isAuthenticated" (click)="logout()"> Logout </button>-->
 <!--<button routerLink="/protected"> Protected </button>-->
 
-<app-nav [(isAuthenticated)]="isAuthenticated" [(username)]="username"></app-nav>
+<div *ngIf="currentRoute != '/landing'" >
+    <!-- <input [(ngModel)]="currentRoute"> -->
+
+    <app-nav (currentRouteEvent)="setCurrentRoute($event)" [(isAuthenticated)]="isAuthenticated" [(username)]="username" ></app-nav>
+</div>
+
+<div *ngIf="currentRoute == '/landing'" >
+    <!-- <input [(ngModel)]="currentRoute"> -->
+    <!-- <app-nav (currentRoute)="setCurrentRoute($event)" [(isAuthenticated)]="isAuthenticated" [(username)]="username" ></app-nav>  -->
+    <app-landing-page></app-landing-page>
+</div>
+

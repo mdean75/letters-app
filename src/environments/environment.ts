@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  letterAPI: 'http://localhost:3000',
+  // letterAPI: 'http://localhost:3000',
+  letterAPI: 'https://api.letters2lostlovedones.com',
   okta: {
     oidc: {
       clientId: `0oa1o7lwagrUdSmCg5d7`,

@@ -1,20 +1,24 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {OktaAuthService} from '@okta/okta-angular';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {UserService} from '../../services/user/user.service';
+import { url } from 'inspector';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
 
   @Input() isAuthenticated = false;
   @Output() isAuthenticatedChange = new EventEmitter();
+
+  @Input() currentRoute: string;
+  @Output() curretRouteEvent = new EventEmitter();
 
   @Input() email: string;
 
@@ -28,7 +32,24 @@ export class NavComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver, public oktaAuth: OktaAuthService, private router: Router,
-              private userservice: UserService) {}
+              private userservice: UserService, private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    // Get the authentication state for immediate use
+    // this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+    this.currentRoute = this.router.url;
+    this.router.events.subscribe(
+      (event: any) => {
+        if (event instanceof NavigationEnd) {
+          console.log(this.router.url);
+          this.currentRoute = this.router.url;
+          this.curretRouteEvent.emit(this.router.url);
+        }
+      }
+    );
+
+    //url.subscribe(url => console.log(url));
+  }
 
   async logout() {
     // Terminates the session with Okta and removes current tokens.

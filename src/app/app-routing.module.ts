@@ -6,6 +6,7 @@ import {SavedLettersComponent} from './components/saved-letters/saved-letters.co
 import {OktaAuthGuard, OktaAuthModule, OktaCallbackComponent, OKTA_CONFIG, OktaAuthService} from '@okta/okta-angular';
 import {LoginComponent} from './components/login/login.component';
 import {BrowserModule} from '@angular/platform-browser';
+import { LandingPageComponent } from './components/landing/landing-page/landing-page.component';
 
 export function onAuthRequired(oktaAuth: OktaAuthService, injector: Injector) {
   const router = injector.get(Router);
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'savedletters', component: SavedLettersComponent, canActivate: [OktaAuthGuard]},
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'landing', component: LandingPageComponent},
   {path: '**', redirectTo: ''}
 ];
 

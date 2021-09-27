@@ -29,6 +29,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 import * as $ from 'jquery';
 import { FlexLayoutModule, FlexModule, GridModule } from '@angular/flex-layout';
+import { LandingPageComponent } from './components/landing/landing-page/landing-page.component';
 
 const oktaConfig = Object.assign({
   onAuthRequired: (oktaAuth, injector) => {
@@ -47,7 +48,8 @@ const oktaConfig = Object.assign({
     NavComponent,
     AboutMeComponent,
     SavedLettersComponent,
-    LoginComponent
+    LoginComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
