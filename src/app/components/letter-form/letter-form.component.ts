@@ -52,11 +52,13 @@ export class LetterFormComponent implements OnInit {
 
     // listen for changes to the user's logged in status
     this.userservice.loggedIn.subscribe(status => this.isAuthenticated = status);
-    console.log(this.oktaAuth.getUser().then(d => {console.log(d.time_zone); }));
+    if (this.isAuthenticated) {
+      console.log(this.oktaAuth.getUser().then(d => {console.log(d.time_zone); }));
+    }
+
   }
 
   async ngOnInit() {
-    console.log(`email: ${this.email}`);
     this.id = this.route.snapshot.paramMap.get('id');
     this.isAddMode = !this.id;
 
@@ -67,12 +69,12 @@ export class LetterFormComponent implements OnInit {
           this.title = letter.title;
           this.username = letter.user;
         });
-    
+
         this.letterService.getLetterContent(this.id).subscribe(content => {
           ($('#summernote') as any).summernote('code', atob(content.content));
         });
     }
-    
+
   }
 
   async sendMessage() {

@@ -23,9 +23,7 @@ export class SavedLettersComponent implements OnInit {
       email = data.email;
     });
 
-    console.log(`email in saved letters: ${email}`);
     this.items = this.letterService.getUsersLetters(email);
-    console.log(this.items);
     this.letters = this.letterService.getMetaForUser(email);
   }
 

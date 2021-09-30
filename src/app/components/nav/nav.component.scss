@@ -1,5 +1,6 @@
-$nav-background: #544c4A;
+$nav-background: #544d55;//544d55 544c4A
 $nav-color: white;
+$landing-green: #4eb980;
 
 .sidenav-container {
   //height: 100%;
@@ -12,19 +13,34 @@ $nav-color: white;
 .sidenav {
   width: 200px;
   color: $nav-color;
+  background-color: $landing-green;
 }
 
 .sidenav .mat-toolbar {
-  background: $nav-background;
-  color: $nav-color;
+  // background: $nav-background;
+  background-color:  $landing-green;
+  color: $nav-background;
+  font-weight: bold;
 }
 
 .sidenav .mat-nav-list a {
-  color: $nav-color;
+  // color: $nav-color;
+  color: $nav-background;
 }
 
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+// .custom-nav {
+//   height: 100px;
+// }
+
+.mat-sidenav-content .mat-toolbar {
+  height: 100px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 51%, 50% 100%, 0% 51%, 0% 0%);
+  background-color: $nav-background;
+  color: $nav-color;
 }

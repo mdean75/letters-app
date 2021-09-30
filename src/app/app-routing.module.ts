@@ -16,14 +16,14 @@ export function onAuthRequired(oktaAuth: OktaAuthService, injector: Injector) {
 }
 
 const routes: Routes = [
-  {path: '', component: LetterFormComponent},
+  {path: 'home', component: LetterFormComponent},
   {path: 'letters', component: LetterFormComponent},
   {path: 'letters/:id', component: LetterFormComponent},
   {path: 'aboutme', component: AboutMeComponent},
   {path: 'savedletters', component: SavedLettersComponent, canActivate: [OktaAuthGuard]},
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'landing', component: LandingPageComponent},
+  {path: '', component: LandingPageComponent},
   {path: '**', redirectTo: ''}
 ];
 

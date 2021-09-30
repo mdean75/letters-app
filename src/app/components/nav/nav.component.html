@@ -5,15 +5,17 @@
       [opened]="(isHandset$ | async) === false" >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/">Home</a>
+      <a mat-list-item routerLink="/home">Home</a>
       <a mat-list-item routerLink="/aboutme">About Me</a>
       <a mat-list-item routerLink="/savedletters">Saved Letters</a>
-      <a mat-list-item routerLink="/landing">Landing</a>
+      <a mat-list-item routerLink="/">Landing</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
+
     <mat-toolbar color="primary">
       <button
+      style="transform: translateY(-70%);"
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
@@ -21,8 +23,8 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Letters 2 Lost Loved Ones</span>
-      <span style="margin-left: auto;">
+      <span style="transform: translateY(-80%);">Letters 2 Lost Loved Ones</span>
+      <span style="margin-left: auto; transform: translateY(-80%);">
         <button *ngIf="!isAuthenticated" routerLink="/login"> Login </button>
         <span style="margin-right: 20px" *ngIf="isAuthenticated">{{ this.username }}</span>
         <button *ngIf="isAuthenticated" (click)="logout()"> Logout </button>

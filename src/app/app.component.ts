@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
     );
   }
 
+  // todo: not sure this is needed
   async getUser(): Promise<string> {
     const user = await this.oktaAuth.getUser();
     return user.name;
@@ -37,12 +38,10 @@ export class AppComponent implements OnInit {
   }
 
   getCurrentRoute() {
-    console.log(this.router.url);
     // this.currentRoute = this.router.url;
     this.router.events.subscribe(
       (event: any) => {
         if (event instanceof NavigationEnd) {
-          console.log(this.router.url);
           this.currentRoute = this.router.url;
           // this.curretRouteEvent.emit(this.router.url);
         }

@@ -41,14 +41,13 @@ export class NavComponent implements OnInit {
     this.router.events.subscribe(
       (event: any) => {
         if (event instanceof NavigationEnd) {
-          console.log(this.router.url);
           this.currentRoute = this.router.url;
           this.curretRouteEvent.emit(this.router.url);
         }
       }
     );
 
-    //url.subscribe(url => console.log(url));
+    // url.subscribe(url => console.log(url));
   }
 
   async logout() {
@@ -63,6 +62,7 @@ export class NavComponent implements OnInit {
     await this.router.navigateByUrl('/');
   }
 
+  // todo: not sure this is needed
   async getUser(): Promise<any> {
     const user = await this.oktaAuth.getUser();
     // let username: string;
@@ -71,8 +71,6 @@ export class NavComponent implements OnInit {
   }
 
   async onOutletLoaded(component) {
-    const user = await this.oktaAuth.getUser();
-    component.email = user.email;
     component.isAuthenticated = this.oktaAuth.$authenticationState;
   }
 }

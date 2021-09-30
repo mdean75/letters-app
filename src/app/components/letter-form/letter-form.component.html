@@ -8,8 +8,10 @@
   </mat-card-title>
   <mat-card-content>
     <div>
-      <p>Inspired by <a href="https://www.thecenterforgrowth.com/tips/processing-grief-through-writing-letters" target="_blank">Processing grief through writing letters</a></p>
-      <div>Note: Copy content of message before sending if you want to save it</div>
+      <p>Inspired by <a href="https://www.thecenterforgrowth.com/tips/processing-grief-through-writing-letters" 
+        target="_blank">Processing grief through writing letters</a> and <a href="https://www.evrmemories.com/writing-letters-as-a-form-of-grieving/" target="_blank">
+          Writing Letters As A Form Of Grieving</a></p>
+      <!-- <div>Note: Copy content of message before sending if you want to save it</div> -->
       <p>
         Following the guidance on the referenced website try:
       </p>
@@ -44,8 +46,13 @@
       <div id="summernote" [ngxSummernote]="config" [ngxSummernoteView]="summernote"></div>
     </div>
     <div>
-      <button mat-raised-button color="primary" (click)="sendMessage()">Send Message</button>
-      <button [disabled]="!isAuthenticated" style="margin-left: 175px" mat-raised-button color="accent" (click)="saveLetter()">Save Message</button>
+      <!-- <button mat-raised-button color="primary" (click)="sendMessage()">Send Message</button> -->
+      <button mat-raised-button color="warn" (click)="sendMessage()">Send Message</button>
+      <!-- <span style="margin-left: 20px;"> -->
+        
+        <button style="margin-left: 50px;" [disabled]="!isAuthenticated" mat-raised-button color="accent" (click)="saveLetter()">Save Message</button>
+
+      <!-- </span> -->
     </div>
     <!-- <div id="summernote" [ngxSummernote]="config" [ngxSummernoteView]="summernote"></div> -->
     <!-- <button mat-raised-button color="default" (click)="testeditable()">Test</button> -->
